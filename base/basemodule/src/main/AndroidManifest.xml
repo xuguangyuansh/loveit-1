@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.net.basemodule">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application>
+        <!--<receiver android:name="net.social.base.BaseActivity$NetworkReceiver">-->
+            <!--<intent-filter>-->
+                <!--&lt;!&ndash; 监听的动作类型，这里是监听网络连接的状态  &ndash;&gt;-->
+                <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+    </application>
+</manifest>

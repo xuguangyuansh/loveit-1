@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="search_normal">搜索指定内容</string>
+    <string name="search_make">搜索创作</string>
+    <string name="search_sale">搜索贩售</string>
+    <string name="search_user">搜索用户</string>
+</resources>

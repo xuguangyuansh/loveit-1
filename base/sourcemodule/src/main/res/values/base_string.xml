@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_net_top">当前网络连接异常</string>
+    <string name="no_net_bottom">处于弱网或者无网的状态，将会影响您的使用体验</string>
+</resources>

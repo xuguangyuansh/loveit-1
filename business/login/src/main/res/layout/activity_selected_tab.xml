@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/dp30"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp82"
+        android:text="@string/select_tab_title"
+        android:textColor="@color/color_text_black3"
+        android:textSize="@dimen/sp26" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp7"
+        android:text="@string/select_tab_desc"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/sp12" />
+    <ScrollView
+        android:layout_marginTop="@dimen/dp38"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:overScrollMode="never"
+        android:fadingEdge="none"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <cn.net.view.flowlayout.TagFlowLayout
+            android:id="@+id/flowlayout"
+            android:layout_marginRight="@dimen/dp30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:max_select="3">
+
+        </cn.net.view.flowlayout.TagFlowLayout>
+    </ScrollView>
+    <cn.net.view.button.BaseButton
+        android:layout_marginTop="@dimen/dp38"
+        android:id="@+id/select_commit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44"
+        android:layout_marginRight="@dimen/dp30"
+        android:text="@string/sure" />
+
+    <TextView
+        android:id="@+id/select_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp28"
+        android:layout_marginRight="@dimen/dp30"
+        android:gravity="center_horizontal"
+        android:text="@string/pass"
+        android:layout_marginBottom="@dimen/dp44"
+        android:textColor="@color/color_text_black"
+        android:textSize="@dimen/sp14" />
+</LinearLayout>

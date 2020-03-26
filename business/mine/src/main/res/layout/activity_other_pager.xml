@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_back_grey"
+    android:orientation="vertical">
+    <!--头部-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp16"
+        android:paddingTop="@dimen/dp24"
+        android:paddingRight="@dimen/dp15"
+        android:paddingBottom="@dimen/dp20">
+        <!--个人信息-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <!--头像-->
+            <ImageView
+                android:id="@+id/other_page_photo"
+                android:layout_width="@dimen/dp60"
+                android:layout_height="@dimen/dp60"
+                android:src="@mipmap/ic_launcher" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp10"
+                android:orientation="vertical">
+                <!--昵称-->
+                <TextView
+                    android:id="@+id/other_page_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="兔贝贝"
+                    android:textColor="@color/color_text_black3"
+                    android:textSize="@dimen/sp23" />
+                <!--标签-->
+                <LinearLayout
+                    android:id="@+id/other_page_tags_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#标签#"
+                        android:textColor="@color/color_text_gray"
+                        android:textSize="@dimen/sp10" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp4"
+                        android:text="#标签#"
+                        android:textColor="@color/color_text_gray"
+                        android:textSize="@dimen/sp10" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!--fans,focus-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp24"
+            android:orientation="horizontal">
+            <!--关注-->
+            <LinearLayout
+                android:id="@+id/other_page_focus_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp6"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/other_page_focus_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:textColor="@color/color_text_black3"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="@string/focus"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="@dimen/sp10" />
+            </LinearLayout>
+            <!--粉丝-->
+            <LinearLayout
+                android:id="@+id/other_page_fans_ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp44"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/other_page_fans_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2336K"
+                    android:textColor="@color/color_text_black3"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp2"
+                    android:text="@string/fans"
+                    android:textColor="@color/color_text_gray"
+                    android:textSize="@dimen/sp10" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp1"
+                android:layout_weight="1"></View>
+            <!--关注-->
+            <TextView
+                android:id="@+id/other_page_to_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_gray_rect"
+                android:paddingLeft="@dimen/dp24"
+                android:paddingTop="@dimen/dp6"
+                android:paddingRight="@dimen/dp24"
+                android:paddingBottom="@dimen/dp6"
+                android:text="@string/focus" />
+            <!--联系-->
+            <LinearLayout
+                android:id="@+id/other_page_contact"
+                android:layout_width="@dimen/dp28"
+                android:layout_height="@dimen/dp28"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp12"
+                android:background="@drawable/bg_gray_rect"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_gray_rect"
+                    android:src="@mipmap/ic_me_message" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:orientation="vertical">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/other_page_tablayout"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_marginBottom="@dimen/dp10"
+            android:background="@android:color/transparent"
+            android:fillViewport="false"
+            android:lineSpacingExtra="0px"
+            app:tabGravity="fill"
+            app:tabIndicatorColor="@color/indicator_color"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="@dimen/dp3"
+            app:tabMode="scrollable"
+            app:tabPaddingEnd="0px"
+            app:tabPaddingStart="0px">
+
+        </com.google.android.material.tabs.TabLayout>
+
+        <cn.net.view.viewpager.TouchViewPager
+            android:id="@+id/other_page_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></cn.net.view.viewpager.TouchViewPager>
+    </LinearLayout>
+</LinearLayout>

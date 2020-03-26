@@ -1,0 +1,14 @@
+<resources>
+    <!--<string name="app_name">sourceModule</string>-->
+    <string name="sure">确定</string>
+    <string name="pass">跳过</string>
+    <string name="cancel">取消</string>
+    <string name="make">创作</string>
+    <string name="sale">贩售</string>
+    <string name="buy">求物</string>
+    <string name="user">用户</string>
+    <string name="search">搜索</string>
+    <string name="share">分享</string>
+    <string name="contact_ta">联系Ta</string>
+    <string name="go_buy">去购买</string>
+</resources>

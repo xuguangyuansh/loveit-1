@@ -1,0 +1,106 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+apply plugin: 'com.android.library'
+apply plugin: 'com.mob.sdk'
+
+android {
+    project.ext.setDefaultConfig project
+
+    //use legacy for android 6.0
+    useLibrary 'org.apache.http.legacy'
+
+    //自3.6.0开始需要java8的支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        //Arouter路由配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    MobSDK {
+        appKey "2c09699fe2948"
+        appSecret "e2b203f74fee74d27b7c370a3c05d1ed"
+        SMSSDK {
+            //默认使用GUI，若不使用GUI，通过以下开关关闭
+            gui false
+            //若使用GUI的自动填充验证码功能，需打开此设置
+//            autoSMS true
+
+            version "3.2.1"
+        }
+        MobPush {
+            devInfo {
+                MEIZU {
+                    appId "魅族的appid"
+                    appKey "魅族的appkey"
+                }
+                XIAOMI {
+                    appId "小米的appId"
+                    appKey "小米的appKey"
+                }
+                OPPO {
+                    appKey "OPPO的appKey"
+                    appSecret "OPPO的appSecret"
+                }
+                VIVO {
+                    appId "VIVO的appId"
+                    appKey  "VIVO的appSecret"
+                }
+                HUAWEI {
+                    appId "华为的appid"
+                }
+            }
+        }
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    implementation "com.alibaba:arouter-api:$rootProject.arouterApiVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+
+    //hotfix
+    implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
+
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    implementation 'com.sina.weibo.sdk:core:4.4.1:openDefaultRelease@aar'
+
+    implementation  'com.umeng.umsdk:analytics:8.0.0'
+    implementation  'com.umeng.umsdk:common:2.1.0'
+    //    implementation  'com.umeng.umsdk:utdid:1.1.5.3'
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+}

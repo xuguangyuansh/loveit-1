@@ -1,0 +1,15 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="net.social.mine">
+
+    <application>
+        <activity android:name=".changeinfo.ChangeUserInfoActivity"></activity>
+        <activity android:name=".focus.MyFocusActivity"></activity>
+        <activity android:name=".fans.MyFansActivity"></activity>
+        <activity android:name=".friends.MyFriendsActivity"></activity>
+        <activity android:name=".make.MyMakeActivity"></activity>
+        <activity android:name=".buy.MyBuyActivity"></activity>
+        <activity android:name=".sale.MySaleActivity"></activity>
+        <activity android:name=".setting.SettingActivity"></activity>
+        <activity android:name=".other.OtherPageActivity"></activity>
+    </application>
+</manifest>

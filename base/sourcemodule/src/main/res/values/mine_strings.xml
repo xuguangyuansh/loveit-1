@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mine_make">我的创作</string>
+    <string name="mine_sale">我的贩售</string>
+    <string name="mine_buy">我的求物</string>
+    <string name="mine_get_buy">我买到的</string>
+    <string name="mine_collection">我的收藏</string>
+    <string name="mine_star">我的点赞</string>
+    <string name="mine_money">钱包</string>
+    <string name="mine_setting">设置</string>
+    <string name="mine_change_info">修改资料</string>
+    <string name="click_change">点击修改</string>
+    <string name="nickname">昵称</string>
+    <string name="gender">性别</string>
+    <string name="birthday">生日</string>
+    <string name="no_select">未选择</string>
+    <string name="mine_tag">标签</string>
+    <string name="my_focus">我的关注</string>
+    <string name="my_fans">我的粉丝</string>
+    <string name="my_friend">我的好友</string>
+    <string name="my_make">我的创作</string>
+    <string name="my_publish">我的发布</string>
+    <string name="my_sale">我的贩售</string>
+    <string name="my_buy">我的求物</string>
+    <string name="setting_address">收货地址</string>
+    <string name="setting_security">账户安全</string>
+    <string name="setting_about">关于我们</string>
+    <string name="setting_update">版本更新</string>
+    <string name="setting_logout">退出账号</string>
+    <string name="focus">关注</string>
+    <string name="fans">粉丝</string>
+    <string name="friends">好友</string>
+</resources>

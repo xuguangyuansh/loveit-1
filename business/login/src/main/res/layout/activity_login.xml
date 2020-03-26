@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/login_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp35"
+            android:text="@string/phone_login"
+            android:textColor="@color/color_text_black3"
+            android:textSize="@dimen/sp26" />
+
+        <TextView
+            android:id="@+id/login_type_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp7"
+            android:text="@string/login_desc"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/sp12" />
+
+        <LinearLayout
+            android:id="@+id/login_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp62"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <cn.net.view.button.BaseButton
+            android:id="@+id/login_bt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp44"
+            android:layout_marginLeft="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp36"
+            android:layout_marginRight="@dimen/dp30"
+            android:gravity="center"
+            android:text="@string/login" />
+
+        <TextView
+            android:id="@+id/jump_other_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp28"
+            android:text="@string/pwd_login"
+            android:textColor="@color/color_text_black"
+            android:textSize="@dimen/sp14" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp12"
+                android:text="@string/login_bottom"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/login_user_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp12"
+                android:text="@string/user_agreement"
+                android:textColor="@color/color_text_blue"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp12"
+                android:text="@string/login_and"
+                android:textColor="@color/color_text_black"
+                android:textSize="@dimen/sp12" />
+
+            <TextView
+                android:id="@+id/login_privacy_agreement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/dp12"
+                android:text="@string/privacy_agreement"
+                android:textColor="@color/color_text_blue"
+                android:textSize="@dimen/sp12" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
