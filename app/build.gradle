@@ -1,0 +1,314 @@
+apply from: "${rootProject.rootDir}/config.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'com.alibaba.arouter'
+apply plugin: 'com.mob.sdk'
+apply plugin: 'com.aliyun.ams.emas-services'
+
+/**
+ * Set this to true to create two separate APKs instead of one:
+ *   - An APK that only works on ARM devices
+ *   - An APK that only works on x86 devices
+ * The advantage is the size of the APK is reduced by about 4MB.
+ * Upload all the APKs to the Play Store and people will download
+ * the correct one based on the CPU architecture of their device.
+ */
+def enableSeparateBuildPerCPUArchitecture = false
+
+/**
+ * Run Proguard to shrink the Java bytecode in release builds.
+ */
+def enableProguardInReleaseBuilds = true
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+android {
+    //调动config.gradle配置
+    project.ext.setDefaultConfig project
+//    compileSdkVersion rootProject.compileSdkVersion
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        versionCode 1
+        versionName "1.0.0"
+//        javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ AROUTER_MODULE_NAME : project.getName() ]
+            }
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters 'armeabi-v7a',"x86"
+        }
+        packagingOptions {
+            exclude "lib/arm64-v8a/libimagepipeline.so"
+            doNotStrip '*/mips/*.so'
+            doNotStrip '*/mips64/*.so'
+        }
+
+        //目录指向配置
+        sourceSets {
+            //设置依赖so库路径
+            main.jniLibs.srcDirs = ['libs']
+        }
+
+
+//        manifestPlaceholders = [
+//        ]
+    }
+
+
+
+    signingConfigs {
+        release {
+            storeFile file(properties.getProperty("keystroe_storeFile"))
+            storePassword properties.getProperty("keystroe_storePassword")
+            keyAlias properties.getProperty("keystroe_keyAlias")
+            keyPassword properties.getProperty("keystroe_keyPassword")
+        }
+    }
+
+    dexOptions {
+        preDexLibraries false
+        jumboMode true
+        javaMaxHeapSize "4g"
+    }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86"//, "arm64-v8a", "x86_64"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    buildTypes {
+        debug {
+
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            buildConfigField "String", "CHANNEL", '"Dev"'
+            buildConfigField "Boolean", "TEST", "true"
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+        }
+        release {
+            minifyEnabled enableProguardInReleaseBuilds
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            zipAlignEnabled true
+            applicationVariants.all { variant ->
+                variant.outputs.all { output ->
+
+                    def buildType = variant.buildType.name
+                    def flavorName = variant.productFlavors[0].name
+                    if (buildType != 'debug') {
+                        def apkName = "loveit" +
+                                "_${flavorName}" +
+                                "_v${defaultConfig.versionName}" +
+                                ".apk"
+                        output.outputFileName = apkName
+                        variant.packageApplicationProvider.get().outputDirectory = new File(project.rootDir.absolutePath + "/apk/${buildType}-${releaseTime()}")
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    flavorDimensions "default"
+
+    productFlavors {
+        Staging {
+            buildConfigField "String", "CHANNEL", '"Staging"'
+            buildConfigField "Boolean", "TEST", "true"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "Staging",
+            ]
+        }
+        Testin {
+            buildConfigField "String", "CHANNEL", '"Testin"'
+            buildConfigField "Boolean", "TEST", "true"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "Testin",
+            ]
+        }
+        Official {
+            buildConfigField "String", "CHANNEL", '"Official"'
+            buildConfigField "Boolean", "TEST", "false"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "Official",
+            ]
+        }
+        HUAWEI {
+            buildConfigField "String", "CHANNEL", '"HUAWEI"'
+            buildConfigField "Boolean", "TEST", "false"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "HUAWEI",
+            ]
+        }
+        QQ {
+            buildConfigField "String", "CHANNEL", '"QQ"'
+            buildConfigField "Boolean", "TEST", "false"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "QQ",
+            ]
+        }
+        VIVO {
+            buildConfigField "String", "CHANNEL", '"VIVO"'
+            buildConfigField "Boolean", "TEST", "false"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "VIVO",
+            ]
+        }
+        XIAOMI {
+            buildConfigField "String", "CHANNEL", '"XIAOMI"'
+            buildConfigField "Boolean", "TEST", "false"
+            manifestPlaceholders = [
+                    UMENG_CHANNEL: "XIAOMI",
+            ]
+        }
+    }
+    // applicationVariants are e.g. debug, release
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            // For each separate APK per architecture, set a unique version code as described here:
+            // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
+            def versionCodes = ["armeabi-v7a": 1]//, "x86": 2, "arm64-v8a": 3, "x86_64": 4]
+            def abi = output.getFilter(com.android.build.OutputFile.ABI)
+            if (abi != null) {  // null for the universal-debug, universal-release variants
+                output.versionCodeOverride =
+                        versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+            }
+        }
+    }
+
+    MobSDK {
+        appKey "2c09699fe2948"
+        appSecret "e2b203f74fee74d27b7c370a3c05d1ed"
+        SMSSDK {
+            //默认使用GUI，若不使用GUI，通过以下开关关闭
+            gui false
+            //若使用GUI的自动填充验证码功能，需打开此设置
+//            autoSMS true
+
+            version "3.2.1"
+        }
+        MobPush {
+            devInfo {
+                MEIZU {
+                    appId "魅族的appid"
+                    appKey "魅族的appkey"
+                }
+                XIAOMI {
+                    appId "小米的appId"
+                    appKey "小米的appKey"
+                }
+                OPPO {
+                    appKey "OPPO的appKey"
+                    appSecret "OPPO的appSecret"
+                }
+                VIVO {
+                    appId "VIVO的appId"
+                    appKey  "VIVO的appSecret"
+                }
+                HUAWEI {
+                    appId "华为的appid"
+                }
+            }
+        }
+    }
+}
+
+
+static def releaseTime() {
+    return new Date().format("yyyyMMdd")
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibVersion"
+//    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+//    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':base:sourcemodule')
+    implementation project(':base:basemodule')
+    implementation project(':business:login')
+    implementation project(path: ':business:homemodule')
+    implementation project(path: ':business:searchmodule')
+    implementation project(path: ':business:messagemodule')
+    implementation project(path: ':base:viewmodule')
+
+    implementation 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
+//    implementation "com.android.support:design:$rootProject.ext.supportLibVersion"
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+
+    implementation "com.alibaba:arouter-api:$rootProject.arouterApiVersion"
+    annotationProcessor "com.alibaba:arouter-compiler:$rootProject.arouterCompilerVersion"
+
+    implementation  'com.umeng.umsdk:analytics:8.0.0'
+    implementation  'com.umeng.umsdk:common:2.1.0'
+    implementation project(path: ':base:netmodule')
+    implementation project(path: ':base:model')
+    implementation project(path: ':loveit_lib:thirdmodule')
+    implementation project(path: ':loveit_lib:gallerymodule')
+    implementation project(path: ':loveit_lib:cameramodule')
+    implementation project(path: ':business:mine')
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    //相机
+    implementation 'com.wonderkiln:camerakit:0.13.2'
+    implementation project(path: ':loveit_lib:imageeditlibrary')
+
+    //毛玻璃
+
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support'
+                && requested.name != 'multidex'
+                && requested.name != 'multidex-instrumentation') {
+            details.useVersion "${rootProject.ext.supportLibVersion}"
+        }else if (requested.group=='com.github.chrisbanes'){
+            details.useVersion "2.3.0"
+        }
+    }
+}
+
+repositories{
+    flatDir{
+        dirs 'libs'
+    }
+}
+
+// Run this once to be able to run the application with BUCK
+// puts all compile dependencies into folder libs for BUCK to use
+task copyDownloadableDepsToLibs(type: Copy) {
+    from configurations.compile
+    into 'libs'
+}
+

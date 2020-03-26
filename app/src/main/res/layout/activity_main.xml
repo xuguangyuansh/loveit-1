@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".main.MainActivity">
+    <!--<cn.net.view.slidelayout.LeftSlideLayout-->
+        <!--android:id="@+id/main_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<FrameLayout-->
+            <!--android:id="@+id/fl_camera"-->
+            <!--android:background="@color/color_white"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</FrameLayout>-->
+        <!--<FrameLayout-->
+            <!--android:background="@color/color_white"-->
+            <!--android:id="@+id/fl_main"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+        <!--</FrameLayout>-->
+    <!--</cn.net.view.slidelayout.LeftSlideLayout>-->
+    <cn.net.view.viewpager.NoScrollViewPager
+        android:id="@+id/main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></cn.net.view.viewpager.NoScrollViewPager>
+</LinearLayout>

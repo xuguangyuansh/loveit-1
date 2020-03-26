@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">loveit</string>
+
+    <string name="bottom_home">首页</string>
+    <string name="bottom_sale">贩售</string>
+    <string name="bottom_buy">求物</string>
+    <string name="bottom_mine">我的</string>
+</resources>

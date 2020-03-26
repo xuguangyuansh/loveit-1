@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="camera_no_promise_title">分享到故事</string>
+    <string name="camera_no_promise_des">允许访问即可拍摄照片和访问相册</string>
+
+    <string name="camera_no_promise">允许访问</string>
+</resources>
